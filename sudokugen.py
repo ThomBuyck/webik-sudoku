@@ -127,15 +127,18 @@ for x in range(5):
             if i in range(72,81):
                 row9.append(sudoku[i].returnSolved())
 
-        print(row1)
-        print(row2)
-        print(row3)
-        print(row4)
-        print(row5)
-        print(row6)
-        print(row7)
-        print(row8)
-        print(row9)
+        rijenlijst = []
+        rijenlijst.append(row1)
+        rijenlijst.append(row2)
+        rijenlijst.append(row3)
+        rijenlijst.append(row4)
+        rijenlijst.append(row5)
+        rijenlijst.append(row6)
+        rijenlijst.append(row7)
+        rijenlijst.append(row8)
+        rijenlijst.append(row9)
+        print(rijenlijst)
+
 
     def sudokuGen():
         '''Generates a completed sudoku. Sudoku is completly random'''
