@@ -31,7 +31,6 @@ db = SQL("sqlite:///sudokus.db")
 random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
 # print(random_sudoku)
 for x in random_sudoku:
-    for y in x:
-        y.replace(".", " ")
-        print(x[y])
+    x = str(x).replace(".", " ")
+    print(x)
 
