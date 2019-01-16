@@ -3,6 +3,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
+import json
 
 from helpers import *
 
@@ -27,11 +28,19 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///sudokus.db")
 
-# def get_sudoku():
-random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
-# print(random_sudoku)
-for x in random_sudoku:
-    for y in x:
-        y.replace(".", " ")
-        print(x[y])
+@app.route("/looks", methods=["GET", "POST"])
+def get_sudoku():
+    random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
+    # print(random_sudoku)
+    for x in random_sudoku:
+        for y in x.values():
+            sudoku = y
+    lst = []
+    for sud in sudoku:
+        lst.append(sud)
+
+    return render_template("looks.html", lst=lst, ran = range(9))
+
+
+
 
