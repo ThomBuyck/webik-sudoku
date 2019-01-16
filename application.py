@@ -25,4 +25,13 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("sqlite:///finance.db")
+db = SQL("sqlite:///sudokus.db")
+
+# def get_sudoku():
+random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
+# print(random_sudoku)
+for x in random_sudoku:
+    for y in x:
+        y.replace(".", " ")
+        print(x[y])
+
