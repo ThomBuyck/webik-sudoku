@@ -45,7 +45,7 @@ def random_select():
 
     # SELECT * FROM Products
     # WHERE Price NOT BETWEEN 10 AND 20;
-    opponent_id = db.execute("SELECT user_id FROM elo_score_history WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
+    opponent_id = db.execute("SELECT user_id FROM elo_score_history ORDER BY random() LIMIT 1 WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
 
     elo_rating_opponent = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
     return
