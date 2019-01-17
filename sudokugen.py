@@ -3,8 +3,19 @@
 import time
 import copy
 import random
+from cs50 import SQL
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask_session import Session
+from passlib.apps import custom_app_context as pwd_context
+from tempfile import mkdtemp
 
+from helpers import *
+
+db = SQL("sqlite:///sudokus.db")
+k = 0
 for x in range(5):
+    # Counter voor id
+    k += 1
     level = "Easy"
 
     """ [Level of Difficulty] = Input the level of difficulty of the sudoku puzzle. Difficulty levels
@@ -96,6 +107,75 @@ for x in range(5):
                 ans.append(c)
         return ans
 
+    def solver(sudoku, f = 0):
+
+        if f > 900:
+            return False
+        guesses = 0
+        copy_s = copy.deepcopy(sudoku)
+        cells = [i for i in range(81)] ## our cells is the positions of cells not currently set
+        solvedCells = []
+        for i in cells:
+            if copy_s[i].lenOfPossible() == 1:
+                solvedCells.append(i)
+        while solvedCells != []:
+            for n in solvedCells:
+                cell = copy_s[n]
+                position1 = cell.checkPosition()
+                finalValue = copy_s[n].returnSolved()
+                for i in cells:  ##now we itterate through the remaing unset cells and remove the input if it's in the same row, col, or box
+                    position2 = copy_s[i].checkPosition()
+                    if position1[0] == position2[0]:
+                        copy_s[i].remove(finalValue)
+                    if position1[1] == position2[1]:
+                        copy_s[i].remove(finalValue)
+                    if position1[2] == position2[2]:
+                        copy_s[i].remove(finalValue)
+                    if copy_s[i].lenOfPossible() == 1 and i not in solvedCells and i in cells:
+                        solvedCells.append(i)
+                    ##print(n)
+                solvedCells.remove(n)
+                cells.remove(n)
+            if cells != [] and solvedCells == []:
+                lowestNum=[]
+                lowest = []
+                for i in cells:
+                    lowestNum.append(copy_s[i].lenOfPossible())
+                m = min(lowestNum)
+                for i in cells:
+                    if copy_s[i].lenOfPossible() == m:
+                        lowest.append(copy_s[i])
+                randomChoice = random.choice(lowest)
+                randCell = copy_s.index(randomChoice)
+                randGuess = random.choice(copy_s[randCell].returnPossible())
+                copy_s[randCell].setAnswer(randGuess)
+                solvedCells.append(randCell)
+                guesses += 1
+        if sudokuChecker(copy_s):
+            if guesses == 0:
+                level = 'Easy'
+            elif guesses <= 2:
+                level = 'Medium'
+            elif guesses <= 7:
+                level = 'Hard'
+            else:
+                level = 'Insane'
+            return copy_s, guesses, level
+        else:
+            return solver(sudoku, f+1)
+
+    def solve(sudoku, n = 0):
+        """ Uses the solver method to solve a puzzle. This method was built in order to avoid recursion depth errors. Returns True if the puzzle is solvable and
+            false if otherwise"""
+        if n < 30:
+            s = solver(sudoku)
+            if s != False:
+                return s
+            else:
+                solve(sudoku, n+1)
+        else:
+            return False
+
     def printSudoku(sudoku):
         '''Prints out a sudoku in a format that is easy for a human to read'''
         row1 = []
@@ -137,7 +217,7 @@ for x in range(5):
         rijenlijst.append(row7)
         rijenlijst.append(row8)
         rijenlijst.append(row9)
-        print(rijenlijst)
+        return db.execute("INSERT INTO generated_sudokus(id, sudoku, level, solution) VALUES(:id, :sudoku, :level, :solution)", id=k, sudoku=rijenlijst, level=level, solution=solve(sudoku))
 
 
     def sudokuGen():
@@ -206,79 +286,6 @@ for x in range(5):
             s = sudokuGen()
             result = sudokuChecker(s)
         return s
-
-    def solver(sudoku, f = 0):
-        """ Input an incomplete Sudoku puzzle and solver method will return the solution to the puzzle. First checks to see if any obvious answers can be set
-            then checks the rows columns and boxes for obvious solutions. Lastly the solver 'guesses' a random possible answer from a random cell and checks to see if that is a
-            possible answer. If the 'guessed' answer is incorrect, then it removes the guess and tries a different answer in a different cell and checks for a solution. It does this until
-            all of the cells have been solved. Returns a printed solution to the puzzle and the number of guesses that it took to complete the puzzle. The number of guesses is
-            a measure of the difficulty of the puzzle. The more guesses that it takes to solve a given puzzle the more challenging it is to solve the puzzle"""
-        if f > 900:
-            return False
-        guesses = 0
-        copy_s = copy.deepcopy(sudoku)
-        cells = [i for i in range(81)] ## our cells is the positions of cells not currently set
-        solvedCells = []
-        for i in cells:
-            if copy_s[i].lenOfPossible() == 1:
-                solvedCells.append(i)
-        while solvedCells != []:
-            for n in solvedCells:
-                cell = copy_s[n]
-                position1 = cell.checkPosition()
-                finalValue = copy_s[n].returnSolved()
-                for i in cells:  ##now we itterate through the remaing unset cells and remove the input if it's in the same row, col, or box
-                    position2 = copy_s[i].checkPosition()
-                    if position1[0] == position2[0]:
-                        copy_s[i].remove(finalValue)
-                    if position1[1] == position2[1]:
-                        copy_s[i].remove(finalValue)
-                    if position1[2] == position2[2]:
-                        copy_s[i].remove(finalValue)
-                    if copy_s[i].lenOfPossible() == 1 and i not in solvedCells and i in cells:
-                        solvedCells.append(i)
-                    ##print(n)
-                solvedCells.remove(n)
-                cells.remove(n)
-            if cells != [] and solvedCells == []:
-                lowestNum=[]
-                lowest = []
-                for i in cells:
-                    lowestNum.append(copy_s[i].lenOfPossible())
-                m = min(lowestNum)
-                for i in cells:
-                    if copy_s[i].lenOfPossible() == m:
-                        lowest.append(copy_s[i])
-                randomChoice = random.choice(lowest)
-                randCell = copy_s.index(randomChoice)
-                randGuess = random.choice(copy_s[randCell].returnPossible())
-                copy_s[randCell].setAnswer(randGuess)
-                solvedCells.append(randCell)
-                guesses += 1
-        if sudokuChecker(copy_s):
-            if guesses == 0:
-                level = 'Easy'
-            elif guesses <= 2:
-                level = 'Medium'
-            elif guesses <= 7:
-                level = 'Hard'
-            else:
-                level = 'Insane'
-            return copy_s, guesses, level
-        else:
-            return solver(sudoku, f+1)
-
-    def solve(sudoku, n = 0):
-        """ Uses the solver method to solve a puzzle. This method was built in order to avoid recursion depth errors. Returns True if the puzzle is solvable and
-            false if otherwise"""
-        if n < 30:
-            s = solver(sudoku)
-            if s != False:
-                return s
-            else:
-                solve(sudoku, n+1)
-        else:
-            return False
 
     def puzzleGen(sudoku):
         """ Generates a puzzle with a unique solution. """

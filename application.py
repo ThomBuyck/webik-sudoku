@@ -30,16 +30,22 @@ db = SQL("sqlite:///sudokus.db")
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
+
     random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
-    # print(random_sudoku)
+
     for x in random_sudoku:
         for y in x.values():
             sudoku = y
-    lst = []
-    for sud in sudoku:
-        lst.append(sud)
 
-    return render_template("looks.html", lst=lst, ran = range(9))
+    lst = [sud for sud in sudoku]
+    repl = [w.replace('.', ' ') for w in lst]
+    new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
+
+    return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
+
+
+def is_complete(sudoku):
+
 
 
 
