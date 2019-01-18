@@ -30,22 +30,23 @@ db = SQL("sqlite:///sudokus.db")
 
 
 
-
 def random_select():
     """
-    selects a random user
-    with a reasonable elo score to play against
+    selects a 'random' opponent
+    with the right elo rating.
     """
-    elo_rating_user = db.execute("SELECT elo FROM elo_rating WHERE id = :user_id", user_id=session["user_id"])
 
+    # Get elo rating from user.
+    elo_rating_user = db.execute("SELECT elo_rating FROM users WHERE id = :user_id", user_id=session["user_id"])
+
+    # Calculate interval for to search for the right opponent.
     min_elo_r_opp = elo_rating_user - 40
     max_elo_r_opp = elo_rating_user + 40
 
-    # SELECT * FROM Products
-    # WHERE Price NOT BETWEEN 10 AND 20;
-    opponent_id = db.execute("SELECT id FROM elo_rating ORDER BY random() LIMIT 1 WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
 
-    elo_rating_opponent = db.execute("SELECT elo FROM elo_rating WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
+    opponent_id = db.execute("SELECT id FROM users ORDER BY random() LIMIT 1 WHERE elo_rating BETWEEN min_elo_r_opp AND max_elo_r_opp", min_elo_r_opp, max_elo_r_opp)
+
+
     return
 
 
@@ -54,7 +55,7 @@ elo_rating_user = db.execute("SELECT elo FROM elo_rating WHERE id = :user_id", u
 elo_rating_opponent = db.execute("SELECT elo FROM elo_rating WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
 
 
-def expected(elo_rating_user, B):
+def expected(elo_rating_user, elo_rating_opponent):
     """
     Calculate expected score of A in a match against B
     :param A: Elo rating for player A
@@ -76,3 +77,5 @@ def elo(elo_rating_user, exp_score, score, k=32):
     new_elo_rating = elo_rating_user + k * (score - exp_score)
 
     return new_elo_rating
+
+db.execute("UPDATE users SET elo_rating = new_elo_rating WHERE id = user_id", new_elo_rating, user_id=session["id"])
