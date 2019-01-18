@@ -28,9 +28,7 @@ Session(app)
 db = SQL("sqlite:///sudokus.db")
 
 
-elo_rating_user = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", user_id=session["user_id"])
 
-elo_rating_opponent = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", opponent_id=re)
 
 
 def random_select():
@@ -38,17 +36,22 @@ def random_select():
     selects a random user
     with a reasonable elo score to play against
     """
-    elo_rating_user = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", user_id=session["user_id"])
+    elo_rating_user = db.execute("SELECT elo FROM elo_rating WHERE id = :user_id", user_id=session["user_id"])
 
     min_elo_r_opp = elo_rating_user - 40
     max_elo_r_opp = elo_rating_user + 40
 
     # SELECT * FROM Products
     # WHERE Price NOT BETWEEN 10 AND 20;
-    opponent_id = db.execute("SELECT user_id FROM elo_score_history ORDER BY random() LIMIT 1 WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
+    opponent_id = db.execute("SELECT id FROM elo_rating ORDER BY random() LIMIT 1 WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
 
-    elo_rating_opponent = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
+    elo_rating_opponent = db.execute("SELECT elo FROM elo_rating WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
     return
+
+
+elo_rating_user = db.execute("SELECT elo FROM elo_rating WHERE id = :user_id", user_id=session["id"])
+
+elo_rating_opponent = db.execute("SELECT elo FROM elo_rating WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
 
 
 def expected(elo_rating_user, B):
