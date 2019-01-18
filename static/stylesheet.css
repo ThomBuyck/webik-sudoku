@@ -8,7 +8,7 @@ html, body {
         border: 1px solid #000000;
         text-align: center;
         vertical-align: middle;
-<<<<<<< HEAD
+
         background-color: #EEEEEE;
       }
 
@@ -16,9 +16,9 @@ html, body {
       border-bottom: 3px solid #f00;
       }
 
-=======
+
       }
->>>>>>> bac08611d889ffe9ddb44846f49725d99d7ba7d1
+
       input {
         color: #000000;
         padding: 0;
@@ -33,13 +33,13 @@ html, body {
       input:disabled {
         background-color: #EEEEEE;
       }
-<<<<<<< HEAD
+
 
 .center {
     text-align: center;
     vertical-align: middle;
 }
-=======
+
       #0,  #1,  #2  { border-top:    2px solid #000000; }
       #2,  #11, #20 { border-right:  2px solid #000000; }
       #18, #19, #20 { border-bottom: 2px solid #000000; }
