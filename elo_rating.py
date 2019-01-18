@@ -61,7 +61,7 @@ def expected(elo_rating_user, elo_rating_opponent):
     :param A: Elo rating for player A
     :param B: Elo rating for player B
     """
-    exp_score = 1 / (1 + 10 ** ((B - elo_rating_user) / 400))
+    exp_score = 1 / (1 + 10 ** ((elo_rating_opponent - elo_rating_user) / 400))
 
     return exp_score
 

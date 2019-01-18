@@ -17,6 +17,7 @@ html, body {
       }
 
 
+      div{ margin: auto;
       }
 
       input {
@@ -76,4 +77,3 @@ html, body {
       #62, #71, #80 { border-right:  2px solid #000000; }
       #78, #79, #80 { border-bottom: 2px solid #000000; }
       #60, #69, #78 { border-left:   2px solid #000000; }
->>>>>>> bac08611d889ffe9ddb44846f49725d99d7ba7d1
