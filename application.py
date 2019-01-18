@@ -27,7 +27,7 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///sudokus.db")
-<<<<<<< HEAD
+
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
@@ -45,18 +45,7 @@ def get_sudoku():
     return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
 
 
-def is_complete(sudoku):
-
-
-
-
-=======
-# def get_sudoku():
-random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
-# print(random_sudoku)
-for sudoku_cijfers in random_sudoku:
-    sudoku_cijfers = str(sudoku_cijfers).replace(".", " ")
-    print(sudoku_cijfers)
+# def is_complete(sudoku):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -86,6 +75,6 @@ def register():
 
     else:
         return render_template("register.html")
->>>>>>> bac08611d889ffe9ddb44846f49725d99d7ba7d1
+
 
     return apology("TODO")
