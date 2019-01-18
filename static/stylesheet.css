@@ -17,8 +17,6 @@ html, body {
       }
 
 
-      }
-
       input {
         color: #000000;
         padding: 0;
@@ -76,4 +74,31 @@ html, body {
       #62, #71, #80 { border-right:  2px solid #000000; }
       #78, #79, #80 { border-bottom: 2px solid #000000; }
       #60, #69, #78 { border-left:   2px solid #000000; }
->>>>>>> bac08611d889ffe9ddb44846f49725d99d7ba7d1
+.first-box {
+  width:300px;
+  float:left;
+  background: red;
+  height: 150px;
+  margin: 50px
+}
+
+.first-box p {
+  color: #ffffff;
+  padding-left: 80px;
+  padding-top: 50px;
+}
+
+.second-box {
+  width:300px;
+  height: 150px;
+  float:right;
+  background: blue;
+  margin: 50px
+}
+
+.second-box p {
+  color: #ffffff;
+  padding-left: 110px;
+  padding-top: 50px;
+}
+

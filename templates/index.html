@@ -5,32 +5,13 @@
 {% endblock %}
 
 {% block main %}
-    <table class="table" style=width=100%>
-        <tr>
-            <th>Stock</th>
-            <th>Shares</th>
-            <th>Price</th>
-            <th>TOTAL</th>
-        </tr>
 
-        {% for stock in stocks %}
-        <tr>
-            <td>{{ stock.stock }}</td>
-            <td>{{ stock.amount }}</td>
-            <td>{{ stock.price }}</td>
-            <td>{{ stock.total }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+  <div class="first-box">
+    <p>Singleplayer</p>
+  </div>
 
-    <h4>Money: {{ cash }}</h4>
-    <h4>Total value shares: {{ total }}</h4>
-
-        <!--<tr>Cash</tr>-->
-        <!--<td></td>-->
-        <!--<td></td>-->
-        <!--<td></td>-->
-        <!--<td>{{ currentcash }}</td>-->
-
+  <div class="second-box">
+    <p>Multiplayer</p>
+  </div>
 
 {% endblock %}
