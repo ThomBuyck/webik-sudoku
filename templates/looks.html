@@ -44,24 +44,7 @@
 
           </tr>
         {% endfor %}
-
-
-      <!--I had a similar problem using Flask, but I did not have to resort to JSON. I just passed a list letters = ['a','b','c'] with render_template('show_entries.html', letters=letters), and set-->
-      <!--var letters = {{ letters|safe }}-->
-      <!--in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.-->
       <table id="grid">
-
-
-        <tr>
-          <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
-          {% for cijfer in sudoku[:9] %}
-          {% if cijfer == type(int)}
-          <td><input id="0"  type="text" value= {% cijfer %} disabled></td>
-          {%else%}
-          <td><input id ="2" type ="text"></td>
-
-
-        </tr>
 
       </table>
 
