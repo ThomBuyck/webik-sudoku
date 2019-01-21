@@ -120,17 +120,20 @@ def register():
 
     return apology("TODO")
 
-@app.route("/index", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
 
     return render_template("index.html")
 
 @app.route("/singleplayer", endpoint = 'singleplayer', methods=["GET", "POST"])
+@login_required
 def singleplayer():
 
     return render_template("singleplayer.html")
 
 @app.route("/multiplayer", endpoint = 'multiplayer', methods=["GET", "POST"])
+@login_required
 def multiplayer():
 
     return render_template("multiplayer.html")
