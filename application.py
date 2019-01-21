@@ -124,3 +124,13 @@ def register():
 def index():
 
     return render_template("index.html")
+
+@app.route("/singleplayer", endpoint = 'singleplayer', methods=["GET", "POST"])
+def singleplayer():
+
+    return render_template("singleplayer.html")
+
+@app.route("/multiplayer", endpoint = 'multiplayer', methods=["GET", "POST"])
+def multiplayer():
+
+    return render_template("multiplayer.html")
