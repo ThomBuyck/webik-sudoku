@@ -8,7 +8,6 @@ from random import randint
 from pprint import pprint
 from bs4 import BeautifulSoup
 import pandas as pd
-# import BeautifulSoup
 from helpers import *
 # import MySQLdb
 # configure application
@@ -35,9 +34,7 @@ db = SQL("sqlite:///sudokus.db")
 
 ran = randint(2,1000)
 sudoku_id = ran
-@app.route("/", methods=["GET", "POST"])
-def index():
-    return render_template("index.html")
+
 # @app.route("/levels", methods=["GET", "POST"])
 # def level():
 #     if request.method == "POST":
