@@ -12,21 +12,38 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+    <meta charset="utf-8"/>
+    <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+    <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </head>
+
   <body>
 
     <div class="container">
 
       <h1>Sudoku Board</h1>
 
+          <fieldset>
+          <table id="table">
+            <div class="form-group">
+              <button name="simple" class="btn btn-default"  type="submit" value="Simple">Simple</button>
 
-      <table id="table">
-        <div class="form-group"> <button name="simple" class="btn btn-default" type="submit">Simple</button></div>
-        <div class="form-group"> <button name="simple" class="btn btn-default" type="submit">Easy</button></div>
-        <div class="form-group"> <button name="simple" class="btn btn-default" type="submit">Intermediate</button></div>
-        <div class="form-group"> <button name="simple" class="btn btn-default" type="submit">Expert</button></div>
+              <button name="simple" class="btn btn-default" type="submit" value="Easy">Easy</button>
 
+              <button name="simple" class="btn btn-default" type="submit" value="Intermediate">Intermediate</button>
+
+              <button name="simple" class="btn btn-default" type="submit" value="Expert">Expert</button>
+            </div>
+          </fieldset>
+        </form>
         <br>
 
           <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
@@ -44,26 +61,6 @@
 
           </tr>
         {% endfor %}
-
-
-      <!--I had a similar problem using Flask, but I did not have to resort to JSON. I just passed a list letters = ['a','b','c'] with render_template('show_entries.html', letters=letters), and set-->
-      <!--var letters = {{ letters|safe }}-->
-      <!--in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.-->
-      <table id="grid">
-
-
-        <tr>
-          <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
-          {% for cijfer in sudoku[:9] %}
-          {% if cijfer == type(int)}
-          <td><input id="0"  type="text" value= {% cijfer %} disabled></td>
-          {%else%}
-          <td><input id ="2" type ="text"></td>
-
-
-        </tr>
-
-      </table>
 
     </div>
 
