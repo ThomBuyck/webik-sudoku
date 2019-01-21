@@ -75,14 +75,11 @@ html, body {
       td:nth-child(3n) {
         border-right:solid ;
       }
-<<<<<<< HEAD
       tr:nth-child(3n){
         border-bottom:solid ;
       }
-=======
 
 
->>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
       input {
         color: #000000;
         padding: 0;
@@ -108,8 +105,7 @@ html, body {
       }
 
 
-<<<<<<< HEAD
-=======
+
       #0,  #1,  #2  { border-top:    2px solid #000000; }
       #2,  #11, #20 { border-right:  2px solid #000000; }
       #18, #19, #20 { border-bottom: 2px solid #000000; }
@@ -171,4 +167,3 @@ html, body {
   margin-right: auto;
   width: 50%;
 }
->>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
