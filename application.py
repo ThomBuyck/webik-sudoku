@@ -4,9 +4,13 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import json
-
+from random import randint
+from pprint import pprint
+from bs4 import BeautifulSoup
+import pandas as pd
+# import BeautifulSoup
 from helpers import *
-
+# import MySQLdb
 # configure application
 app = Flask(__name__)
 
@@ -28,24 +32,72 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///sudokus.db")
 
+ran = randint(2,1000)
+sudoku_id = ran
+
+@app.route("/levels", methods=["GET", "POST"])
+def level():
+    if request.method == "POST":
+
+        if request.form['level'] == "simple":
+            return("simple")
+        elif request.form.get["level"] == "Easy":
+            return ("easy")
+        elif request.form.get["level"] == "Intermediate":
+           return ("intermediate")
+        elif request.form.get["level"] == "Expert":
+            return ("expert")
+    else:
+        return render_template("levels.html")
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
 
-    random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
+    if request.method == "POST":
+        lev = level()
+        if lev in ["simple", "easy", "intermediate", "expert"]:
+            random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus WHERE VALUES(id=:id, level=:level)", id=sudoku_id, level=lev)
 
-    for x in random_sudoku:
-        for y in x.values():
-            sudoku = y
+            for x in random_sudoku:
+                for y in x.values():
+                    sudoku = y
 
-    lst = [sud for sud in sudoku]
-    repl = [w.replace('.', ' ') for w in lst]
-    new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
+            lst = [sud for sud in sudoku]
+            repl = [w.replace('.', ' ') for w in lst]
+            new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
 
-    return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
+            return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
+        else:
+            return render_template("looks.html")
+    else:
+        return render_template("looks.html")
+
+def solution():
+    solution = db.execute("SELECT solution FROM generated_sudokus WHERE id=:id", id=sudoku_id)
+    return solution
+
+@app.route("/looks", methods=["GET", "POST"])
+def get_sudoku_data():
+    data = []
+    for x in range(81):
+        cijfers = request.form.get['cijfer']
+        data.append(cijfers)
+    return data
 
 
-# def is_complete(sudoku):
+def check_complete(sudoku):
+    get_sudoku()
+    sol = solution()
+    df = pd.read_html('looks.html')[0]
+    df_list = df.values.tolist()
+
+    if df_list == sol:
+        return render_template("index.html")
+    else:
+        return ("You failed")
+
+
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
