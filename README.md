@@ -1,13 +1,13 @@
 # h1 webik-sudoku
-# h2 Projectvoorstel Webprogrammeren en databases IK
+## h2 Projectvoorstel Webprogrammeren en databases IK
 
     Groep: 08 Thom Buyck, Stijn Hering en Melvin Crombeen
 
-# h3 amenvatting
+### h3 amenvatting
 
     Wij willen een website maken waarbij spelers sudoku’s tegen elkaar kunnen spelen. Hierbij kunnen zij punten behalen op basis van hoe goed zij een sudoku oplossen. De scores worden bijgehouden en er is ook een timer aanwezig om zo de score te bepalen.
 
-# h3 Controllers
+### h3 Controllers
 
     ..* ~~Login/register (POST)~~
     ..* ~~Sudoku’s ophalen uit database (POST) (functie: get_sudoku)~~
@@ -19,7 +19,7 @@
 
 
 
-# h3 Features
+### h3 Features
 
     ..* scorelijst van vrienden
     ..* vriendenlijst
@@ -31,7 +31,7 @@
     ..* Database gebruikers en scores.
     ..* ~~ELO systeem voor scores indelen~~
 
-# h3 Model/helpers
+### h3 Model/helpers
 
     ..* ~~Sudoku invullen~~
     ..* ~~Login vereist~~
@@ -41,7 +41,7 @@
     ..* Chat (optioneel)
 
 
-# h3 MVP
+### h3 MVP
 
     ..* ~~sudokus spelen~~
     ..* vrienden uitnodigen
@@ -50,7 +50,7 @@
     ..* ~~Inlog en registratiepagina~~
     ..* match history
 
-# h3 Plugins en frameworks
+### h3 Plugins en frameworks
 
     ..* Bootstrap (https://getbootstrap.com/docs/4.1/getting-started/introduction/)
     ..* Numpy (https://docs.scipy.org/doc/)
