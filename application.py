@@ -7,7 +7,7 @@ import json
 from random import randint
 from pprint import pprint
 from bs4 import BeautifulSoup
-import pandas as pd
+#import pandas as pd
 from helpers import *
 # import MySQLdb
 # configure application
