@@ -106,12 +106,14 @@ def register():
         # Check of 2x zelfde wachtwoord is ingevuld
         elif request.form.get("password") != request.form.get("confirmation"):
             return apology("wachtwoorden komen niet overeen!")
-        elif len(db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))) == 1:
-            return apology("confirmation password must match password")
 
-        db.execute("INSERT INTO users (username, hashed, email) VALUES (:username, :hashed, :email)",
+
+        data = db.execute("INSERT INTO users (username, hashed, email) VALUES (:username, :hashed, :email)",
                 username=request.form.get("username"), hashed =pwd_context.hash(request.form.get("password")), email=request.form.get("email"))
-
+        if not data:
+            return apology("Username is already taken!!!")
+        else:
+            session["user_id"] = data
         #veranderen
         return redirect(url_for("index"))
 
