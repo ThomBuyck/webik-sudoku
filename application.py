@@ -76,7 +76,14 @@ def get_sudoku():
 
 def solution():
     solution = db.execute("SELECT solution FROM generated_sudokus WHERE id=:id", id=sudoku_id)
-    return solution
+    for x in solution:
+        for y in x.values():
+            sol = y
+
+    lst = [s for s in sol]
+    repl = [w.replace('.', ' ') for w in lst]
+    new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
+    return new_list
 
 
 def get_sudoku_data():
@@ -86,16 +93,17 @@ def get_sudoku_data():
         data.append(cijfers)
     return data
 
-def check_complete(sudoku):
-    get_sudoku()
-    sol = solution()
-    df = pd.read_html('looks.html')[0]
-    df_list = df.values.tolist()
+# @app.route("/")
+# def check_complete(sudoku):
+#     get_sudoku()
+#     sol = solution()
+#     df = pd.read_html('looks.html')[0]
+#     df_list = df.values.tolist()
 
-    if df_list == sol:
-        return render_template("index.html")
-    else:
-        return ("You failed")
+#     if df_list == sol:
+#         return render_template("index.html")
+#     else:
+#         return ("You failed")
 
 
 @app.route("/register", methods=["GET", "POST"])

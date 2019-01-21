@@ -16,13 +16,25 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-
+    <script>
+        function goPython(){
+            $.ajax({
+              url: "Done_button.py",
+             context: document.body
+            }).done(function() {
+             alert('finished python script');
+            });
+        }
+      </script>
     <div class="container">
 
       <h1>Sudoku Board</h1>
       <h4>When you are done with the game, press this button:</h4>
-        <form action="index.html"><button name="done" class="btn btn-default" type="submit" onclick=>Done</button></form>
+        <!--<form action="index.html"><button name="done" class="btn btn-default" type="submit" onclick=goPython() onclick="window.location.href='register'">Done</button></form>-->
+        <a type= "submit" class="et_pb_button" title="Multiplayer" onclick=goPython() onclick="window.location.href='register'">Multiplayer</a>
       <br>
+      <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
 
           <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
       <table id="table" width="400">
