@@ -1,3 +1,38 @@
+.container
+{
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* colors for navbar */
+.navbar-default .navbar-brand .blue
+{
+    color: #537fbe;
+}
+.navbar-default .navbar-brand .red
+{
+    color: #ea433b;
+}
+.navbar-default .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+.navbar-default .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
 html, body {
         background-color: #FAFAFA
       }
@@ -16,9 +51,6 @@ html, body {
       border-bottom: 3px solid #f00;
       }
 
-
-      div{ margin: auto;
-      }
 
       input {
         color: #000000;
@@ -76,4 +108,36 @@ html, body {
       #60, #61, #62 { border-top:    2px solid #000000; }
       #62, #71, #80 { border-right:  2px solid #000000; }
       #78, #79, #80 { border-bottom: 2px solid #000000; }
+<<<<<<< HEAD
       #60, #69, #78 { border-left:   2px solid #000000; }
+=======
+      #60, #69, #78 { border-left:   2px solid #000000; }
+.first-box {
+  width:300px;
+  float:left;
+  background: red;
+  height: 150px;
+  margin: 50px
+}
+
+.first-box p {
+  color: #ffffff;
+  padding-left: 80px;
+  padding-top: 50px;
+}
+
+.second-box {
+  width:300px;
+  height: 150px;
+  float:right;
+  background: blue;
+  margin: 50px
+}
+
+.second-box p {
+  color: #ffffff;
+  padding-left: 110px;
+  padding-top: 50px;
+}
+
+>>>>>>> 3a277a586a190be9cae71efb400847c2004a60d9
