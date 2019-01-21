@@ -31,7 +31,7 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///sudokus.db")
-<<<<<<< HEAD
+
 
 ran = randint(2,1000)
 sudoku_id = ran
@@ -52,8 +52,7 @@ def index():
 #             return ("expert")
 #     else:
 #         return render_template("levels.html")
-=======
->>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
+
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
@@ -88,8 +87,6 @@ def solution():
     new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
     return new_list
 
-
-<<<<<<< HEAD
 def get_sudoku_data():
     data = []
     for x in range(81):
@@ -108,7 +105,7 @@ def get_sudoku_data():
 #         return render_template("index.html")
 #     else:
 #         return ("You failed")
-=======
+
 # def get_sudoku():
     random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
 # print(random_sudoku)
@@ -150,7 +147,7 @@ def login():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
->>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
+
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -181,10 +178,6 @@ def register():
 
     else:
         return render_template("register.html")
-<<<<<<< HEAD
-
-=======
->>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
 
     return apology("TODO")
 
