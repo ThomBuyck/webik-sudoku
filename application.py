@@ -31,6 +31,7 @@ Session(app)
 
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///sudokus.db")
+<<<<<<< HEAD
 
 ran = randint(2,1000)
 sudoku_id = ran
@@ -51,6 +52,8 @@ def index():
 #             return ("expert")
 #     else:
 #         return render_template("levels.html")
+=======
+>>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
@@ -86,6 +89,7 @@ def solution():
     return new_list
 
 
+<<<<<<< HEAD
 def get_sudoku_data():
     data = []
     for x in range(81):
@@ -104,6 +108,49 @@ def get_sudoku_data():
 #         return render_template("index.html")
 #     else:
 #         return ("You failed")
+=======
+# def get_sudoku():
+    random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
+# print(random_sudoku)
+    for sudoku_cijfers in random_sudoku:
+        sudoku_cijfers = str(sudoku_cijfers).replace(".", " ")
+        print(sudoku_cijfers)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    """Log user in."""
+
+    # forget any user_id
+    session.clear()
+
+    # if user reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+
+        # ensure username was submitted
+        if not request.form.get("username"):
+            return apology("must provide username")
+
+        # ensure password was submitted
+        elif not request.form.get("password"):
+            return apology("must provide password")
+
+        # query database for username
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+
+        # ensure username exists and password is correct
+        if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hashed"]):
+            return apology("invalid username and/or password")
+
+        # remember which user has logged in
+        session["user_id"] = rows[0]["id"]
+
+        # redirect user to home page
+        return redirect(url_for("index"))
+
+    # else if user reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("login.html")
+>>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -130,10 +177,42 @@ def register():
                 username=request.form.get("username"), hashed =pwd_context.hash(request.form.get("password")), email=request.form.get("email"))
 
         #veranderen
-        return redirect(url_for("register"))
+        return redirect(url_for("index"))
 
     else:
         return render_template("register.html")
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2074c5a0c543d8f73df15dfb9340bf1a4425e9f9
 
     return apology("TODO")
+
+@app.route("/", methods=["GET", "POST"])
+@login_required
+def index():
+
+    return render_template("index.html")
+
+@app.route("/singleplayer", endpoint = 'singleplayer', methods=["GET", "POST"])
+@login_required
+def singleplayer():
+
+    return render_template("singleplayer.html")
+
+@app.route("/multiplayer", endpoint = 'multiplayer', methods=["GET", "POST"])
+@login_required
+def multiplayer():
+
+    return render_template("multiplayer.html")
+
+
+@app.route("/logout")
+def logout():
+    """Log user out."""
+
+    # forget any user_id
+    session.clear()
+
+    # redirect user to login form
+    return redirect(url_for("login"))

@@ -28,48 +28,55 @@ Session(app)
 db = SQL("sqlite:///sudokus.db")
 
 
-elo_rating_user = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", user_id=session["user_id"])
-
-elo_rating_opponent = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", opponent_id=re)
 
 
 def random_select():
     """
-    selects a random user
-    with a reasonable elo score to play against
+    selects a 'random' opponent
+    with the right elo rating.
     """
-    elo_rating_user = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :user_id", user_id=session["user_id"])
 
+    # Get elo rating from user.
+    elo_rating_user = db.execute("SELECT elo_rating FROM users WHERE id = :user_id", user_id=session["user_id"])
+
+    # Calculate interval to search for the right opponent.
     min_elo_r_opp = elo_rating_user - 40
     max_elo_r_opp = elo_rating_user + 40
 
-    # SELECT * FROM Products
-    # WHERE Price NOT BETWEEN 10 AND 20;
-    opponent_id = db.execute("SELECT user_id FROM elo_score_history ORDER BY random() LIMIT 1 WHERE elo_score BETWEEN min_elo_r_opp AND max_elo_r_opp")
+    # Selects the opponent, remember opponent ID.
+    opponent_id = db.execute("SELECT id FROM users ORDER BY random() LIMIT 1 WHERE elo_rating BETWEEN min_elo_r_opp AND max_elo_r_opp", min_elo_r_opp, max_elo_r_opp)
 
-    elo_rating_opponent = db.execute("SELECT elo_score FROM elo_score_history WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
-    return
+    # Get his elo rating.
+    elo_opponent = db.execute("SELECT elo FROM elo_rating WHERE id = :opponent_id BETWEEN", opponent_id=opponent_id)
 
+    # Return his elo_rating.
+    return  elo_opponent
 
-def expected(elo_rating_user, B):
+elo_user = db.execute("SELECT elo FROM elo_rating WHERE id = :user_id", user_id=session["id"])
+
+def elo_calculate(elo_user,elo_opponent, score, k=32):
     """
-    Calculate expected score of A in a match against B
-    :param A: Elo rating for player A
-    :param B: Elo rating for player B
+    P1 = elo_rating_user
+    P2 = elo_rating_opponent
+    k = 32 constant variable
+    score, 0 for loser, 0.5 for draw(both players), 1 for winner.
+
+    E1 = 10^(elo_rating_user/400)
+    E2 = 10^(elo_rating_opponent/400)
+
+    R1 = new rating user
+    R2 = new rating opponent
+
+    R1 = P1 + k(score - E1/(E1 - E2))
+    R2 = P2 + k(score - E2/(E1 - E2))
+
+    rounding the new elo ratings would be nice.
     """
-    exp_score = 1 / (1 + 10 ** ((B - elo_rating_user) / 400))
+    E1 = 10**(elo_rating_user/400)
+    E2 = 10**(elor_ratin_opponent/400)
 
-    return exp_score
+    new_elo_user = elo_user + k * (score - E1/(E1-E2))
 
+    db.execute("UPDATE users SET elo_rating = :new_elo_user WHERE id = :user_id", new_elo_user, user_id=session["id"])
+    return  redirect(url_for("index"))
 
-def elo(elo_rating_user, exp_score, score, k=32):
-    """
-    Calculate the new Elo rating for a player
-    :param old: The previous Elo rating
-    :param exp: The expected score for this match
-    :param score: The actual score for this match
-    :param k: The k-factor for Elo (default: 32)
-    """
-    new_elo_rating = elo_rating_user + k * (score - exp_score)
-
-    return new_elo_rating
