@@ -75,7 +75,7 @@ def login():
         rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
 
         # ensure username exists and password is correct
-        if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hash"]):
+        if len(rows) != 1 or not pwd_context.verify(request.form.get("password"), rows[0]["hashed"]):
             return apology("invalid username and/or password")
 
         # remember which user has logged in
@@ -124,3 +124,24 @@ def register():
 def index():
 
     return render_template("index.html")
+
+@app.route("/singleplayer", endpoint = 'singleplayer', methods=["GET", "POST"])
+def singleplayer():
+
+    return render_template("singleplayer.html")
+
+@app.route("/multiplayer", endpoint = 'multiplayer', methods=["GET", "POST"])
+def multiplayer():
+
+    return render_template("multiplayer.html")
+
+
+@app.route("/logout")
+def logout():
+    """Log user out."""
+
+    # forget any user_id
+    session.clear()
+
+    # redirect user to login form
+    return redirect(url_for("login"))

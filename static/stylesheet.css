@@ -131,31 +131,28 @@ html, body {
       #62, #71, #80 { border-right:  2px solid #000000; }
       #78, #79, #80 { border-bottom: 2px solid #000000; }
       #60, #69, #78 { border-left:   2px solid #000000; }
-.first-box {
-  width:300px;
-  float:left;
-  background: red;
-  height: 150px;
-  margin: 50px
-}
 
-.first-box p {
-  color: #ffffff;
-  padding-left: 80px;
-  padding-top: 50px;
+.et_pb_button {
+    display: inline-block;
+    margin: 5px; /* space between buttons */
+    background: #b06f97; /* background color */
+    color: #333; /* text color */
+    font-size: 1.5em;
+    font-family: ‘Georgia’, serif;
+    font-style: italic;
+    border-radius: 50px; /* rounded corners */
+    padding: 8px 16px; /* space around text */
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
 }
-
-.second-box {
-  width:300px;
-  height: 150px;
-  float:right;
-  background: blue;
-  margin: 50px
+.et_pb_button :hover {
+    background: #666;
+    color: #c1e1e0;
 }
-
-.second-box p {
-  color: #ffffff;
-  padding-left: 110px;
-  padding-top: 50px;
+.img_index{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
-
