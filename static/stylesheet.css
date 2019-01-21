@@ -7,21 +7,17 @@
 }
 
 /* colors for navbar */
-.navbar-default .navbar-brand .blue
+.navbar-default .navbar-brand .white
 {
-    color: #537fbe;
+    color: #FFFFFF;
 }
-.navbar-default .navbar-brand .red
+.navbar-default .navbar-brand .black
 {
-    color: #ea433b;
+    color: #000000;
 }
-.navbar-default .navbar-brand .yellow
+.navbar-default .navbar-brand .silver
 {
-    color: #f5b82e;
-}
-.navbar-default .navbar-brand .green
-{
-    color: #2e944b;
+    color: #C0C0C0;
 }
 
 main .form-control
@@ -31,6 +27,18 @@ main .form-control
 
     /* override Bootstrap's 100% width for form controls */
     width: auto;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main td
+{
+    /* left-align tables' cells */
+    text-align: left;
 }
 
 html, body {
@@ -108,9 +116,6 @@ html, body {
       #60, #61, #62 { border-top:    2px solid #000000; }
       #62, #71, #80 { border-right:  2px solid #000000; }
       #78, #79, #80 { border-bottom: 2px solid #000000; }
-<<<<<<< HEAD
-      #60, #69, #78 { border-left:   2px solid #000000; }
-=======
       #60, #69, #78 { border-left:   2px solid #000000; }
 .first-box {
   width:300px;
@@ -140,4 +145,3 @@ html, body {
   padding-top: 50px;
 }
 
->>>>>>> 3a277a586a190be9cae71efb400847c2004a60d9
