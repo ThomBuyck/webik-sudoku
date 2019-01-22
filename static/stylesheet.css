@@ -25,7 +25,17 @@
     text-align: center;
 }
 
-/* colors for navbar */
+/* NAVBAR STYLING*/
+
+.navbar-default
+{
+    background-color: #36454F;
+    border-color: #a9a9a9;
+}
+.nav.navbar-nav.navbar-right li a span
+{
+    color: white;
+}
 .navbar-default .navbar-brand .white
 {
     color: #FFFFFF;
@@ -54,7 +64,7 @@ main img
     max-width: 100%;
 }
 
-
+/* SUDOKU STYLE */
 html, body {
         background-color: #FAFAFA
       }
