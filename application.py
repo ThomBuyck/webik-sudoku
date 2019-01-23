@@ -209,8 +209,15 @@ def logout():
     # redirect user to login form
     return redirect(url_for("login"))
 
-@app.route("/profile")
+@app.route("/profile", methods=["GET", "POST"])
 def profile():
+    # Get user col
     user = db.execute("SELECT * FROM users WHERE id=:id", id = session["user_id"])
+    # Get singleplayer score col
+    points = db.execute("SELECT points FROM singleplayer_scores WHERE id=:id", id = session["user_id"])
+    # Get username
     username = user[0]["username"]
-    return render_template("profile.html",username)
+    e_mail = user[0]["email"]
+
+
+    return render_template("profile.html", username=username, e_mail=e_mail, points=points)
