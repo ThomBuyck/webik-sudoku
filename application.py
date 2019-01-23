@@ -9,6 +9,7 @@ from pprint import pprint
 from bs4 import BeautifulSoup
 import pandas as pd
 from helpers import *
+
 # import MySQLdb
 # configure application
 app = Flask(__name__)
@@ -36,39 +37,36 @@ ran = randint(2,1000)
 sudoku_id = ran
 
 @app.route("/levels", methods=["GET", "POST"])
-def level():
+def levels():
     if request.method == "POST":
-
-        if request.form['level'] == "Simple":
-            return("simple")
-        elif request.form['level'] == "Easy":
-            return("easy")
-        elif request.form['level'] == "Intermediate":
-            return("intermediate")
-        elif request.form['level'] == "Expert":
-            return("expert")
+        return render_template("levels.html")
     else:
         return render_template("levels.html")
-
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
     if request.method == "POST":
-        lev = level()
-        if lev in ["simple", "easy", "intermediate", "expert"]:
-            random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus WHERE id=:id AND level=:level", id=sudoku_id, level=lev)
+        if request.form['level'] == "Simple":
+            lev = "simple"
+        elif request.form['level'] == "Easy":
+            lev = "easy"
+        elif request.form['level'] == "Intermediate":
+            lev = "intermediate"
+        elif request.form['level'] == "Expert":
+            lev ="expert"
 
-            for x in random_sudoku:
-                for y in x.values():
-                    sudoku = y
 
-            lst = [sud for sud in sudoku]
-            repl = [w.replace('.', ' ') for w in lst]
-            new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
+        random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus WHERE id=:id AND level=:level", id=sudoku_id, level=lev)
 
-            return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
-        else:
-            return render_template("levels.html")
+        for x in random_sudoku:
+            for y in x.values():
+                sudoku = y
+
+        lst = [sud for sud in sudoku]
+        repl = [w.replace('.', ' ') for w in lst]
+        new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
+
+        return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
     else:
         return render_template("looks.html")
 
@@ -97,10 +95,7 @@ def checking():
     if new_list == sol:
         return render_template("index.html")
     else:
-        return render_template("levels.html")
-
-
-
+        return render_template("Lost.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -136,8 +131,6 @@ def login():
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
-
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -178,17 +171,11 @@ def index():
 
     return render_template("index.html")
 
-@app.route("/singleplayer", endpoint = 'singleplayer', methods=["GET", "POST"])
-@login_required
-def singleplayer():
-
-    return render_template("singleplayer.html")
-
 @app.route("/multiplayer", endpoint = 'multiplayer', methods=["GET", "POST"])
 @login_required
 def multiplayer():
 
-    return render_template("multiplayer.html")
+    return apology("SORRY! WORK IN PROGRESS")
 
 
 @app.route("/logout")
@@ -205,4 +192,8 @@ def logout():
 def profile():
     user = db.execute("SELECT * FROM users WHERE id=:id", id = session["user_id"])
     username = user[0]["username"]
-    return render_template("profile.html",username)
+    return render_template("profile.html",username=username)
+
+@app.route("/lost")
+def lost():
+    return render_template("Lost.html")

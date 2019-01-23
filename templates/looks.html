@@ -14,11 +14,9 @@
     <!--<link rel="stylesheet" type="text/css" href="stylesheet.css">-->
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<<<<<<< HEAD
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-=======
 
->>>>>>> ed20d80c54f3b257984905f47844d3d505fbc5a1
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
     <meta charset="utf-8"/>
     <meta content="initial-scale=1, width=device-width" name="viewport"/>
@@ -30,10 +28,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ed20d80c54f3b257984905f47844d3d505fbc5a1
   </head>
 
   <body>
@@ -43,49 +37,13 @@
     <script src="{{url_for('static', filename='isnumber.js')}}"></script>
       <h1>Sudoku Board</h1>
       <h4>When you are done with the game, press this button:</h4>
-        <!--<form action="index.html"><button name="done" class="btn btn-default" type="submit" onclick=goPython() onclick="window.location.href='register'">Done</button></form>-->
-
-        <!--<a type= "submit" class="et_pb_button" title="Done" onclick=goPython() onclick="window.location.href='register'">Done</a>-->
       <br>
       <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-        <!--  <fieldset>-->
-        <!--  <table id="table">-->
-        <!--    <div class="form-group">-->
-        <!--      <button name="simple" class="btn btn-default"  type="submit" value="Simple">Simple</button>-->
-
-<<<<<<< HEAD
-        <!--      <button name="simple" class="btn btn-default" type="submit" value="Easy">Easy</button>-->
-=======
-
-              <button name="simple" class="btn btn-default" type="submit" value="Easy">Easy</button>
->>>>>>> ed20d80c54f3b257984905f47844d3d505fbc5a1
-
-        <!--      <button name="simple" class="btn btn-default" type="submit" value="Intermediate">Intermediate</button>-->
-
-        <!--      <button name="simple" class="btn btn-default" type="submit" value="Expert">Expert</button>-->
-        <!--    </div>-->
-        <!--  </fieldset>-->
-        <!--</form>-->
-        <br>
         <form action="{{url_for("checking") }}" method ="POST">
-            <a href=# id="Done"><button class='btn btn-default' onclick="input()">Done</button></a>
+            <input type="submit" class="btn btn-dark" value="Done" name="done">
 
-<<<<<<< HEAD
-=======
-          <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
-      <table id="table" width="400">
-        {% for j in ran %}
-          <tr>
-            {% for p in ran %}
-              {% if cijfers[j][p] == " " %}
-                <td >
-                  <form><input name ="cijfer" class="input" type="number" maxlength="1" min="1" max="9" onKeyPress="if(this.value.length==1) return false;"/>{{ cijfers[j][p] }}</form>
-                </td>
-              {% else %}
-                <td class="center" disabled>{{ cijfers[j][p] }}</td>
-              {% endif %}
->>>>>>> ed20d80c54f3b257984905f47844d3d505fbc5a1
+
 
           <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
           <table id="table" name="sudokutable" width="400">
@@ -115,10 +73,6 @@
       <!--in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.-->
       <!--<table id="grid">-->
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ed20d80c54f3b257984905f47844d3d505fbc5a1
     </div>
 
   </body>

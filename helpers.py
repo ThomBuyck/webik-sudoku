@@ -1,9 +1,16 @@
 import csv
 import urllib.request
-
+from cs50 import SQL
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from flask_session import Session
+from passlib.apps import custom_app_context as pwd_context
+from tempfile import mkdtemp
+import json
+from random import randint
 from flask import redirect, render_template, request, session
 from functools import wraps
 
+db = SQL("sqlite:///sudokus.db")
 
 def apology(message, code=400):
     """Renders message as an apology to user."""
@@ -107,3 +114,4 @@ def lookup(symbol):
 
     except:
         return None
+
