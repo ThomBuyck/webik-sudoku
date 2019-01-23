@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script type = "text/javascript" src="static/achtergrond.js"></script>
+{% extends "layout.html" %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>HTML Sudoku Board</title>
+{% block title %}
+    sudoku
+{% endblock %}
+{% block head %}
+  <link href="{{ url_for('static', filename='stylesheetsudoku.css') }}" rel="stylesheet"/>
+{% endblock %}
 
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="/static/stylesheet.css">
 
     <!--<link rel="stylesheet" type="text/css" href="stylesheet.css">-->
@@ -31,6 +31,9 @@
   </head>
 
   <body>
+=======
+{% block main %}
+>>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
 
     <script src="{{url_for('static', filename='checking.js')}}"></script>
     <div class="container">
@@ -40,11 +43,32 @@
       <br>
       <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
+<<<<<<< HEAD
+=======
+        <!--  <fieldset>-->
+        <!--  <table id="table">-->
+        <!--    <div class="form-group">-->
+        <!--      <button name="simple" class="btn btn-default"  type="submit" value="Simple">Simple</button>-->
+
+
+              <button name="simple" class="btn btn-default" type="submit" value="Easy">Easy</button>
+
+        <!--      <button name="simple" class="btn btn-default" type="submit" value="Intermediate">Intermediate</button>-->
+
+        <!--      <button name="simple" class="btn btn-default" type="submit" value="Expert">Expert</button>-->
+        <!--    </div>-->
+        <!--  </fieldset>-->
+        <!--</form>-->
+        <br>
+>>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
         <form action="{{url_for("checking") }}" method ="POST">
             <input type="submit" class="btn btn-dark" value="Done" name="done">
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
           <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
           <table id="table" name="sudokutable" width="400">
             {% for j in ran %}
@@ -73,8 +97,10 @@
       <!--in my javascript code. Jinja2 replaced {{ letters }} with ['a','b','c'], which javascript interpreted as an array of strings.-->
       <!--<table id="grid">-->
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
     </div>
 
-  </body>
-
-</html>
+{% endblock %}

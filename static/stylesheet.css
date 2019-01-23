@@ -49,6 +49,7 @@
     color: #C0C0C0;
 }
 
+<<<<<<< HEAD
 main .form-control
 {
     /* center form controls */
@@ -119,6 +120,10 @@ html, body {
 
 
 #input[type=submit] {
+=======
+
+.et_pb_button {
+>>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
     display: inline-block;
     margin: 5px; /* space between buttons */
     background: #b06f97; /* background color */
