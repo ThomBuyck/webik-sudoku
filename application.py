@@ -7,7 +7,6 @@ import json
 from random import randint
 from pprint import pprint
 from bs4 import BeautifulSoup
-import pandas as pd
 from helpers import *
 # import MySQLdb
 # configure application
@@ -206,7 +205,7 @@ def profile():
     # Get user col
     user = db.execute("SELECT * FROM users WHERE id=:id", id = session["user_id"])
     # Get singleplayer score col
-    points = db.execute("SELECT points FROM singleplayer_scores WHERE id=:id", id = session["user_id"])
+    points = db.execute("SELECT points FROM singleplayer_score WHERE id=:id", id = session["user_id"])
     # Get username
     username = user[0]["username"]
     e_mail = user[0]["email"]
