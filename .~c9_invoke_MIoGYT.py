@@ -7,7 +7,7 @@ import json
 from random import randint
 from pprint import pprint
 from bs4 import BeautifulSoup
-#import pandas as pd
+import pandas as pd
 from helpers import *
 # import MySQLdb
 # configure application
@@ -35,43 +35,42 @@ db = SQL("sqlite:///sudokus.db")
 ran = randint(2,1000)
 sudoku_id = ran
 
-# @app.route("/levels", methods=["GET", "POST"])
-# def level():
-#     if request.method == "POST":
+@app.route("/levels", methods=["GET", "POST"])
+def level():
+    if request.method == "POST":
 
-#         if request.form['level'] == "simple":
-#             return("simple")
-#         elif request.form.get["level"] == "Easy":
-#             return ("easy")
-#         elif request.form.get["level"] == "Intermediate":
-#           return ("intermediate")
-#         elif request.form.get["level"] == "Expert":
-#             return ("expert")
-#     else:
-#         return render_template("levels.html")
+        if request.form['level'] == "Simple":
+            return("simple")
+        elif request.form['level'] == "Easy":
+            return("easy")
+        elif request.form['level'] == "Intermediate":
+            return("intermediate")
+        elif request.form['level'] == "Expert":
+            return("expert")
+    else:
+        return render_template("levels.html")
 
 
 @app.route("/looks", methods=["GET", "POST"])
 def get_sudoku():
+    if request.method == "POST":
+        lev = level()
+        if lev in ["simple", "easy", "intermediate", "expert"]:
+            random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus WHERE id=:id AND level=:level", id=sudoku_id, level=lev)
 
-    # if request.method == "POST":
-    #     lev = level()
-    #     if lev in ["simple", "easy", "intermediate", "expert"]:
-    random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus WHERE id=:id", id=sudoku_id)
+            for x in random_sudoku:
+                for y in x.values():
+                    sudoku = y
 
-    for x in random_sudoku:
-        for y in x.values():
-            sudoku = y
+            lst = [sud for sud in sudoku]
+            repl = [w.replace('.', ' ') for w in lst]
+            new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
 
-    lst = [sud for sud in sudoku]
-    repl = [w.replace('.', ' ') for w in lst]
-    new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
-
-    return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
-    #     else:
-    #         return render_template("looks.html")
-    # else:
-    #     return render_template("looks.html")
+            return render_template("looks.html", lst=lst, ran = range(9), cijfers = new_list)
+        else:
+            return render_template("levels.html")
+    else:
+        return render_template("looks.html")
 
 def solution():
     solution = db.execute("SELECT solution FROM generated_sudokus WHERE id=:id", id=sudoku_id)
@@ -84,31 +83,24 @@ def solution():
     new_list = [repl[i:i+9] for i in range(0, len(repl), 9)]
     return new_list
 
-def get_sudoku_data():
-    data = []
-    for x in range(81):
-        cijfers = request.form.get['cijfer']
-        data.append(cijfers)
-    return data
+@app.route("/checking", methods=["GET", "POST"])
+def checking():
 
-# @app.route("/")
-# def check_complete(sudoku):
-#     get_sudoku()
-#     sol = solution()
-#     df = pd.read_html('looks.html')[0]
-#     df_list = df.values.tolist()
+    sol = solution()
 
-#     if df_list == sol:
-#         return render_template("index.html")
-#     else:
-#         return ("You failed")
+    new_list = [[0 for x in range(9)] for y in range(9)]
+    for x in range(9):
+        for y in range(9):
+            get_data = request.form.get(str(x) + " - " + str(y))
+            new_list[x][y] = get_data
 
-# def get_sudoku():
-    random_sudoku = db.execute("SELECT sudoku FROM generated_sudokus ORDER BY random() LIMIT 1")
-# print(random_sudoku)
-    for sudoku_cijfers in random_sudoku:
-        sudoku_cijfers = str(sudoku_cijfers).replace(".", " ")
-        print(sudoku_cijfers)
+    if new_list == sol:
+        return render_template("index.html")
+    else:
+        return render_template("levels.html")
+
+
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -209,15 +201,8 @@ def logout():
     # redirect user to login form
     return redirect(url_for("login"))
 
-@app.route("/profile", methods=["GET", "POST"])
+@app.route("/profile")
 def profile():
-    # Get user col
     user = db.execute("SELECT * FROM users WHERE id=:id", id = session["user_id"])
-    # Get singleplayer score col
-    points = db.execute("SELECT points FROM singleplayer_scores WHERE id=:id", id = session["user_id"])
-    # Get username
     username = user[0]["username"]
-    e_mail = user[0]["email"]
-
-
-    return render_template("profile.html", username=username, e_mail=e_mail, points=points)
+    return render_template("profile.html",username)
