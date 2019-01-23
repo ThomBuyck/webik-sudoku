@@ -208,3 +208,10 @@ def logout():
 
     # redirect user to login form
     return redirect(url_for("login"))
+
+@app.route("/profile", endpoint = 'profile', methods=["GET", "POST"])
+@login_required
+def score():
+    username = db.execute("SELECT username FROM users WHERE id = :id", id = session["user_id"])
+    username_1 = username[0]
+    return render_template("profile.html", username_1 = username_1)
