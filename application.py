@@ -195,15 +195,11 @@ def profile():
     points = db.execute("SELECT points FROM singleplayer_score WHERE id=:id", id = session["user_id"])
     # Get username
     username = user[0]["username"]
-<<<<<<< HEAD
-    return render_template("profile.html",username=username)
+    return render_template("profile.html", username=username, points=points)
 
 @app.route("/lost")
 def lost():
     return render_template("Lost.html")
-=======
-    e_mail = user[0]["email"]
 
 
-    return render_template("profile.html", username=username, e_mail=e_mail, points=points)
->>>>>>> fd912d5335543253292626c6ab22aeb2a2461721
+
