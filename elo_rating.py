@@ -75,8 +75,8 @@ def elo_calculate(elo_user,elo_opponent, score, k=32):
     E1 = 10**(elo_rating_user/400)
     E2 = 10**(elor_ratin_opponent/400)
 
-    new_elo_user = elo_user + k * (score - E1/(E1-E2))
+    new_elo_user = round(elo_user + k * (score - E1/(E1-E2)))
 
-    db.execute("UPDATE users SET elo_rating = :new_elo_user WHERE id = :user_id", new_elo_user, user_id=session["id"])
+    db.execute("UPDATE users SET elo_rating = :new_elo_user WHERE id = :user_id", new_elo_user=new_elo_user, user_id=session["id"])
     return  redirect(url_for("index"))
 
