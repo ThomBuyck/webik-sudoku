@@ -107,4 +107,3 @@ def lookup(symbol):
 
     except:
         return None
-
