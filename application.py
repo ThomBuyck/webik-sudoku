@@ -209,7 +209,6 @@ def logout():
     # redirect user to login form
     return redirect(url_for("login"))
 
-
 @app.route("/profile")
 def profile():
     user = db.execute("SELECT * FROM users WHERE id=:id", id = session["user_id"])
