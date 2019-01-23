@@ -1,0 +1,64 @@
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+/* SUDOKU STYLE */
+html, body {
+        background-color: #FAFAFA
+      }
+      table {
+        border:solid #000000;
+
+      }
+      td {
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 50px;
+        font-family: "Times New Roman", Times, serif;
+        background-color: #EEEEEE;
+        width: 10px;
+      }
+
+      td:nth-child(3n) {
+        border-right:solid ;
+      }
+      tr:nth-child(3n){
+        border-bottom:solid ;
+      }
+
+
+      input {
+        color: #000000;
+        padding: 0;
+        border: 0;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        background-color: #FFFFFF;
+        outline: none;
+      }
+      input:disabled {
+        background-color: #EEEEEE;
+      }
+
+      input:[type=number]{
+        color: black;
+      }
+
+      .center {
+        text-align: center;
+        vertical-align: middle;
+      }
