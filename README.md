@@ -19,10 +19,10 @@ voor nu hebben we 1000 sudokus per niveau gemaakt)
    Bij je profile heb je een scorebord met gespeeld games en hoeveel punten je hebt gehaald.
 * Kijken of de sudoku af is en als niet af is kijken hoeveel goede cijfers ingevuld (functie: checking)
    staat in application.py
-* Moeilijkheid sudokus
+* Moeilijkheid sudokus(functie:level)
 
    alles staat op level in de database.
-* vriendenlijst (functie: friends)
+* vriendenlijst (functie: friend_check)
 
    Database en is te vinden op de multiplayer pagina
 
