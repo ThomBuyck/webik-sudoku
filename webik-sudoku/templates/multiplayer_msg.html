@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Message
+{% endblock %}
+
+{% block main %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <h1>Score</h1>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title"><h2>You have scored {{ score }} points</h2>
+    {% if dbrow %}
+    <p class="card-text"><h3>{{ friend }} has scored {{ friendscore }}</h3>
+                        <h3>This means that you have {{ wonlost }} this game</h3>
+    {% if wonlost == "won" %}
+        <img src="https://media.giphy.com/media/KEVNWkmWm6dm8/giphy.gif" alt="won gif">
+    {% elif wonlost == "played a tie" %}
+        <img src="https://media.giphy.com/media/bWNROIERih2kE/giphy.gif" alt="tie gif">
+    {% else %}
+        <img src="https://media1.tenor.com/images/dd449e708394e98935d945a62fc47a50/tenor.gif?itemid=5280574" alt="lost gif">
+    {% endif %}
+
+    </div>
+    <div class="card-footer text-muted">
+    {% else %}
+    <h4>{{ friend }} has not played yet. Wait for him to play!</h4>
+    {% endif %}
+    </div>
+</div>
+
+<a href="{{ url_for('index') }}" class="btn btn-primary">Homepage</a>
+{% endblock %}

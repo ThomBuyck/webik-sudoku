@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    multiplayer
+{% endblock %}
+{% block main %}
+<div class="card text-center">
+  <div class="card-header">
+    <h1>Mulitplayer</h1>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Choose your opponent!</p>
+     <form class="search" action="{{url_for("friend_check") }}" method ="POST">
+        <input type="text" placeholder="Look for your friends" name="search">
+        <button  class="btn btn-primary" type="submit"><i class="fa fa-search"></i>Submit</button></form>
+
+        <h2>Friends</h2>
+        <br>
+        <table id=" mulit_table" class="table table-hover">
+        <thead>
+          <tr>
+            <th id="multi_table"><h2>Friends</h2></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for friend in friends %}
+          <tr id="friendtable">
+                <td id="friendtable"><h3>{{ friend }}</h3></td>
+                <td id="friendtable"><form action="/multiplayer_levels" method ="POST">
+                  <button class="btn btn-secondary btn-lg" type="submit" name="friend" value="{{ friend }}">Play!</button></form></td>
+
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </div>
+{% endblock %}

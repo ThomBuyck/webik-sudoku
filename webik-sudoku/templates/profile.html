@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}
+    Profile
+{% endblock %}
+{% block main %}
+<h3>Game history</h3>
+<br>
+<table id="history" class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col" id="history">Username</th>
+      <th scope="col" id="history">Opponent</th>
+      <th scope="col" id="history">Your points</th>
+      <th scope="col" id="history">Friendscore</th>
+      <th scope="col" id="history">Level</th>
+      <th scope="col" id="history">Gamemode</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for row in played %}
+    <tr>
+      <td>{{ username }}</td>
+      <td>{{ row.opponent }}</td>
+      <td>{{ row.player_score }}</td>
+      <td>{{ row.friend_score }}</td>
+      <td>{{ row.level }}</td>
+      <td>{{ row.gamemode }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

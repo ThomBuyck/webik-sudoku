@@ -1,0 +1,108 @@
+/* NAVBAR STYLING*/
+
+.navbar-default
+{
+
+    background-color: #36454F;
+    border-color: #a9a9a9;
+}
+.navbar-default .navbar-brand .whitec
+{
+    color: #FFFFFF;
+    font-size: 250%;
+}
+.navbar-default .navbar-brand .white
+{
+    color: #FFFFFF;
+}
+.navbar-default .navbar-brand .black
+{
+    color: #000000;
+}
+.navbar-default .navbar-brand .silver
+{
+    color: #C0C0C0;
+}
+
+.form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+.img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+
+/* SUDOKU STYLE */
+#sudokutable{
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #FAFAFA;
+    border:4px solid black;
+    border-collapse: collapse;
+}
+#sudokutd {
+    text-align: center;
+    border-collapse:collapse;
+  }
+#sudokuinput {
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    font-size: 15px;
+    border-collapse:collapse;
+
+  }
+#sudokuinput:disabled {
+    background-color: #383838;
+    font-size : 12px ;
+    border-collapse:collapse;
+  }
+#sudokutr:nth-child(3n){
+      border-bottom: 4px solid black;
+      border-collapse:collapse;
+  }
+#sudokutd:nth-child(3n){
+      border-right: 4px solid black;
+      border-collapse:collapse;
+  }
+
+#multi_table {
+   text-align: center;
+}
+
+/*Other style*/
+.container
+{
+    /* center contents */
+    margin: auto;
+    text-align: center;
+
+}
+
+.center
+{
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.img_index{
+    display: block;
+    margin: auto;
+    width: 30%;
+    }
+
+.img_login{
+    display: block;
+    margin: auto;
+    width:30%;
+    height:30%;
+    }

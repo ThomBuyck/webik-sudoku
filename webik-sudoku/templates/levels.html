@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Levels
+{% endblock %}
+
+{% block main %}
+<div class="card-deck">
+   <div class="btn-group">
+      <div class="card">
+        <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Poop_Emoji_7b204f05-eec6-4496-91b1-351acc03d2c7_large.png?v=1480481059" alt="Card image cap" width="45">
+          <div class="card-body">
+              <h3 class="card-title">Simple Sudokus</h3>
+              <p class="card-text">Are you new to sudokus and want to become better? start playing simple and work your way up!</p>
+              <form action="looks " method ="POST">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" name = level value = Simple>Simple</button>
+              </form>
+          <div class="card-footer">
+                click on me!
+          </div>
+          </div>
+      </div>
+      <br>
+      <div class="card" width="20">
+          <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1061/1924/products/White_Baby_Emoji_large.png?v=1480481048" alt="Card image cap" width="45">
+            <div class="card-body">
+              <h3 class="card-title">Easy Sudokus</h3>
+              <p class="card-text">You have played a few sudokus in the past but you're not too comfortable with them either</p>
+              <form action="looks " method ="POST">
+              <button class="btn btn-success btn-lg btn-block" type="submit" name = level value = Easy>Easy</button>
+              </form>
+          <div class="card-footer">
+                click on me!
+          </div>
+          </div>
+      </div>
+      <br>
+      <div class="card">
+        <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Nerd_with_Glasses_Emoji_2a8485bc-f136-4156-9af6-297d8522d8d1_large.png?v=1483276509" alt="Card image cap" width="45">
+              <div class="card-body">
+                <h3 class="card-title">Intermediate sudokus</h3>
+                <p class="card-text">You know how to play sudokus, you play them frequently and most off them are completely correct!</p>
+                <form action="looks " method ="POST">
+                <button class="btn btn-warning btn-lg btn-block" type="submit" name = level value = Intermediate>Intermediate</button>
+                </form>
+          <div class="card-footer">
+                click on me!
+          </div>
+          </div>
+      </div>
+      <br>
+      <div class="card">
+        <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/1061/1924/products/Emoji_Icon_-_Sunglasses_cool_emoji_large.png?v=1542436012" alt="Card image cap" width="45">
+            <div class="card-body">
+              <h3 class="card-title">Hard Sudokus</h3>
+              <p class="card-text">You have been playing sudokus since the day you were born, and still play them everyday!</p>
+              <form action="looks " method ="POST">
+              <button class="btn btn-danger btn-lg btn-block" type="submit" name = level Value = Expert>Hard</button>
+              </form>
+          <div class="card-footer">
+                click on me!
+          </div>
+          </div>
+      </div>
+  </div>
+</div>
+<br>
+{% endblock %}

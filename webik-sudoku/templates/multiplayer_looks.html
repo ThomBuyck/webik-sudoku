@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Sudoku
+{% endblock %}
+
+{% block main %}
+    <script>
+    window.setTimeout(function(){
+    window.location.href = "/multiplayer_msg";},
+    10 * 60000);
+    </script>
+    <!--Geef tijd die overblijft mee-->
+    <input type="hidden" id="time_left" name="time_left" value= time_left >
+
+
+<div class="container">
+    <!--Geef tijd die overblijft mee-->
+    <input type="hidden" id="time_left" name="time_left" value= time_left >
+
+      <div>Time left: <span id="time"></span> </div>
+
+      <h1>Sudoku Board</h1>
+      <p>Good Luck!</p>
+        <form action="{{url_for("multiplayer_checking") }}" method ="POST">
+            <input type="submit" class="btn btn-dark" value="Finished" id="done" name="done">
+            <!--Geef time_left mee-->
+            <input type="hidden" id="timeleft" value = " " name= "timeleft">
+          <!--als je dingen wilt bijvoegen gebruik dan, value ="getal" en dan disabled-->
+          <h3>Press the button when you're done!</h3>
+          <table id="sudokutable" name="sudokutable">
+            {% for j in ran %}
+              <tr id="sudokutr">
+                {% for p in ran %}
+                  {% if cijfers[j][p] == " " %}
+                    <td id="sudokutd">
+                      <input id="sudokuinput" name ="{{ j }} - {{ p }}" class="input" type="text" maxlength="1" min="1" max="9" autocomplete = "off"
+                      oninput="this.value = this.value.replace(/[^1-9]/g, '').replace(/(\..*)\./g, '$1');" onKeyPress="if(this.value.length==1) return false;"/>{{ cijfers[j][p] }}
+                    </td >
+                  {% else %}
+                    <td id="sudokutd" disabled>{{ cijfers[j][p] }}</td>
+                  {% endif %}
+
+                {% endfor %}
+
+              </tr id="sudokurow">
+            {% endfor %}
+          </table>
+
+        </form>
+
+
+
+
+</div>
+
+{% endblock %}

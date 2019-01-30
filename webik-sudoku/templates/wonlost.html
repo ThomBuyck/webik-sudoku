@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Lost
+{% endblock %}
+
+{% block main %}
+
+<div class="card text-center">
+  <div class="card-header">
+    <h1>Score</h1>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">You have {{ solved }} the puzzle!</h4>
+    <p class="card-text"><h5>You have scored {{ score }} points!</h5>
+                         <h5>You had {{ time }} seconds left.</h5></p>
+
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Homepage</a>
+  </div>
+  <div class="card-footer text-muted">
+    2doku
+  </div>
+</div>
+
+{% endblock %}
