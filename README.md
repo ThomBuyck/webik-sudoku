@@ -12,43 +12,41 @@ tegenstanders spelen (elo rating).
 
 ### Controllers
 
-* ~~Login/register (POST)~~
-* ~~Sudoku’s ophalen uit database (POST) (functie: get_sudoku)~~
+* Login/register (POST)
+* Sudoku’s ophalen uit database (POST) (functie: get_sudoku)
 
 ...(we hebben zelf sudokus gegeneert omdat onze eerste database niet het sudoku niveau gaf, we hebben daarom het heft in eigen handen genomen en voor 4 verschillende niveaus sudokus gegenereert.
-     voor nu hebben we 1000 sudokus per niveau gemaakt)
-* ~~Scores bijhouden/History (POST) (functie: score)~~
+voor nu hebben we 1000 sudokus per niveau gemaakt)
+* Scores bijhouden/History (POST) (functie: score)
    Bij je profile heb je een scorebord met gespeeld games en hoeveel punten je hebt gehaald.
-* ~~Kijken of de sudoku af is en als niet af is kijken hoeveel goede cijfers ingevuld (functie: checking)~~
+* Kijken of de sudoku af is en als niet af is kijken hoeveel goede cijfers ingevuld (functie: checking)
    staat in application.py
-* ~~Moeilijkheid sudokus~~
+* Moeilijkheid sudokus
 
    alles staat op level in de database.
-* ~~vriendenlijst (functie: friends)~~
+* vriendenlijst (functie: friends)
+
+   Database en is te vinden op de multiplayer pagina
 
 
 
 
 ### Features
 
-* vriendenlijst
+* Vriendenlijst
 
    staat in de multiplayer pagina, vrienden toevoegen en knop om tegen ze te spelen,
    daarnaast is er een check knop om te kijken of je nog moet spelen tegen andere.
-* ~~Sudoku’s spelen (multiplayer en singleplayer)~~
+* Sudoku’s spelen (multiplayer en singleplayer)
 
    zowel singleplayer en multiplayer sudokus kan je nu spelen, voor singleplayer en multiplayer krijg je punten.
-* Vrienden uitnodigen
-
-   is net niet gelukt, heeft wellicht te maken dat we met ze 3en zijn.
-* ~~Inlog en registratiepagina~~
+   
+* Inlog en registratiepagina
 
    werkt helemaal
-* ~~Database gebruikers en scores.~~
-* ELO systeem
+* Database gebruikers en scores.
 
-   Was wel een code voor geschreven maar sinds we niet toe kwamen aan random spelers uit te kunnen kiezen is de website nu gericht op..
-   alleen maar vrienden.
+   bestaat in sudoku.db
 
 ### Model/helpers
 
@@ -57,16 +55,18 @@ tegenstanders spelen (elo rating).
 * Scores weergeven
 * Timer
 
+   Als je eerder klaar bent met je sudoku krijg je punten per seconden. 
+
 
 
 ### MVP
 
-* ~~sudokus spelen~~
-* ~~vrienden uitnodigen~~
-* ~~Vriendenlijst~~
-* ~~Inlog en registratiepagina~~
-* ~~score~~
-* ~~match history~~
+* Sudokus spelen
+* vrienden uitnodigen
+* Vriendenlijst
+* Inlog en registratiepagina
+* Score
+* Match history
 
 ### Plugins en frameworks
 
