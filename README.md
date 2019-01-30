@@ -6,9 +6,7 @@
 
 Wij willen een website maken waarbij spelers sudoku’s voor zichtzelf kunnen spelen maar ook tegen elkaar.
 Je verdient punten met het maken van sudokus. Zo krijg je punten per goed ingevulde vakje en krijg je punten
-als je in een bepaalde tijd klaar bent met de sudoku. Deze punten worden opgeslagen in een database.
-Als de gebruiker goed is in sudokus en hij/zij wilt een keer een potje spelen tegen iemand anders zal de gebruiker tegen een gelijkwaardig
-tegenstanders spelen (elo rating).
+als je in een bepaalde tijd klaar bent met de sudoku. Deze punten worden opgeslagen in een database. Bij je persoonlijke profiel kan je zien welke games jij hebt gewonnen en hoeveel punten je hebt gescoord
 
 ### Controllers
 
