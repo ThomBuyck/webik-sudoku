@@ -15,7 +15,7 @@ tegenstanders spelen (elo rating).
 * Login/register (POST)
 * Sudoku’s ophalen uit database (POST) (functie: get_sudoku)
 
-...(we hebben zelf sudokus gegeneert omdat onze eerste database niet het sudoku niveau gaf, we hebben daarom het heft in eigen handen genomen en voor 4 verschillende niveaus sudokus gegenereert.
+   (we hebben zelf sudokus gegeneert omdat onze eerste database niet het sudoku niveau gaf, we hebben daarom het heft in eigen handen genomen en voor 4 verschillende niveaus sudokus gegenereert.
 voor nu hebben we 1000 sudokus per niveau gemaakt)
 * Scores bijhouden/History (POST) (functie: score)
    Bij je profile heb je een scorebord met gespeeld games en hoeveel punten je hebt gehaald.
