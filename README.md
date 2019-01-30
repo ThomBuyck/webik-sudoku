@@ -8,7 +8,7 @@ Wij willen een website maken waarbij spelers sudoku’s voor zichtzelf kunnen sp
 Je verdient punten met het maken van sudokus. Zo krijg je punten per goed ingevulde vakje en krijg je extra punten
 als je binnen de tijd klaar bent met een sudoku. Deze punten worden opgeslagen in een database.
 
-In het begin was het een beetje zoeken wie wat zou gaan doen, maar gaandeweg ontstond er een globale taakverdeling.Melvin heeft de sudoku werkend gemaakt en de databases met de history en scores gedaan. Stijn heeft de opmaak gedaan en ook deels meegewerkt aan de databases. Thom heeft de pagina's en de timerfunctie gemaakt.
+In het begin was het een beetje zoeken wie wat zou gaan doen, maar gaandeweg ontstond er een globale taakverdeling. Melvin heeft de sudoku werkend gemaakt en de databases met de history en scores gedaan. Stijn heeft de opmaak gedaan en ook deels meegewerkt aan de databases. Thom heeft de pagina's en de timerfunctie gemaakt.
 
 ### Controllers
 
