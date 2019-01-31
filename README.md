@@ -70,3 +70,7 @@ voor nu hebben we 1000 sudokus per niveau gemaakt)
 
 * Bootstrap (https://getbootstrap.com/docs/4.1/getting-started/introduction/)
 * Javascript
+
+### Product Demo
+
+* Link naar productdemo: (https://drive.google.com/file/d/1iNuxjOfropnEvf75aGa9GE25kWOvpdsM/view)
