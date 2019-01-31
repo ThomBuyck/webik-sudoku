@@ -73,4 +73,4 @@ voor nu hebben we 1000 sudokus per niveau gemaakt)
 
 ### Product Demo
 
-* Link naar productdemo: (https://drive.google.com/file/d/1iNuxjOfropnEvf75aGa9GE25kWOvpdsM/view)
+* Link naar productdemo: (https://drive.google.com/file/d/1iNuxjOfropnEvf75aGa9GE25kWOvpdsM/view?usp=sharing)
